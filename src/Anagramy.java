@@ -266,22 +266,6 @@ public class Anagramy
     public void readFile2And7(String fn) throws IOException {
         slowa3 = new HashSet<>();
 
-        FileInputStream fis = new FileInputStream(fn);
-        InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
-        BufferedReader br = new BufferedReader(isr);
-        String line;
-        while ((line = br.readLine()) != null) {
-            line = line.toLowerCase(Locale.ROOT);
-            line = line.replaceAll("[^a-zA-Z]+", " ");
-            String[] sline = line.split(" ");
-            for (String s : sline) {
-                if (s.length() >= 3) {
-                    slowa3.add(new MyTuple(s, ""));
-                }
-            }
-        }
-        br.close();
-
         try (Stream<String> txtStream = Files.lines(Path.of(fn), StandardCharsets.UTF_8)) {
             List<String> words = txtStream
                     .map(String::toLowerCase)
@@ -290,11 +274,16 @@ public class Anagramy
                     .filter(txt -> txt.length() >= 3)
                     .collect(Collectors.toList());
 
-            for (int i = 0; i < words.size(); i += 2) {
-                if (i + 1 < words.size()) {
-                    slowa3.add(new MyTuple(words.get(i), words.get(i + 1)));
-                } else {
-                    slowa3.add(new MyTuple(words.get(i), ""));
+            for (int i = 0; i < words.size(); i++) {
+                slowa3.add(new MyTuple(words.get(i), ""));
+
+                if (i % 2 == 0)
+                {
+                    if (i + 1 < words.size()) {
+                        slowa3.add(new MyTuple(words.get(i), words.get(i + 1)));
+                    } else {
+                        slowa3.add(new MyTuple(words.get(i), ""));
+                    }
                 }
             }
         }
