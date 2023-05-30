@@ -52,12 +52,12 @@ public class Main
         System.out.println("metoda 5 - findAnagrams");
         System.out.println("czas odczytu: " + (end - start) / 1e9 + " sek");
         System.out.println("Liczba anagramow: " + a.anagramy.size());
-//        a.wypiszAnagramy();
+        a.wypiszAnagramy();
         System.out.println();
         a.slowa.clear();
         a.anagramy.clear();
 
-        //ETAP 2
+//        ETAP 2
 
         start = System.nanoTime();
         a.readFile2("english.200MB.txt");
@@ -66,7 +66,7 @@ public class Main
         System.out.println("metoda 6 - findAnagrams2");
         System.out.println("czas odczytu: " + (end - start) / 1e9 + " sek");
         System.out.println("Liczba anagramow: " + a.anagramy.size());
-//        a.wypiszAnagramy();
+        a.wypiszAnagramy();
         System.out.println();
         a.slowa.clear();
         a.anagramy.clear();
@@ -113,7 +113,7 @@ public class Main
         System.out.println("metoda 10 - findAnagrams3, readFile5");
         System.out.println("czas odczytu: " + (end - start) / 1e9 + " sek");
         System.out.println("Liczba anagramow: " + a.anagramy.size());
-//        a.wypiszAnagramy();
+        a.wypiszAnagramy();
         System.out.println();
         a.slowa.clear();
         a.anagramy.clear();
@@ -125,7 +125,7 @@ public class Main
         System.out.println("metoda 11 - findAnagrams3, readFile7");
         System.out.println("czas odczytu: " + (end - start) / 1e9 + " sek");
         System.out.println("Liczba anagramow: " + a.anagramy.size());
-//        a.wypiszAnagramy();
+        a.wypiszAnagramy();
         System.out.println();
         a.slowa.clear();
         a.anagramy.clear();
@@ -139,7 +139,7 @@ public class Main
         System.out.println("metoda 12 - findAnagrams3, readFile2And7");
         System.out.println("czas odczytu: " + (end - start) / 1e9 + " sek");
         System.out.println("Liczba anagramow: " + a.anagramy.size());
-//        a.wypiszAnagramy();
+        a.wypiszAnagramy();
         System.out.println();
         a.slowa.clear();
         a.anagramy.clear();

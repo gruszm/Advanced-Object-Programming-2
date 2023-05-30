@@ -6,23 +6,40 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class MyTuple
-{
+class MyTuple {
     String first, second;
 
-    public MyTuple(String s1, String s2)
-    {
-        this.first = s1;
-        this.second = s2;
+    public MyTuple(String s1, String s2) {
+        // sortujemy słowa alfabetycznie w ramach pary
+        if (s1.compareTo(s2) <= 0) {
+            this.first = s1;
+            this.second = s2;
+        } else {
+            this.first = s2;
+            this.second = s1;
+        }
     }
 
-    public String sortLetters()
-    {
+    public String sortLetters() {
         char[] t = (first + second).toCharArray();
         Arrays.sort(t);
         return new String(t);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyTuple myTuple = (MyTuple) o;
+        return Objects.equals(first, myTuple.first) && Objects.equals(second, myTuple.second);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second);
+    }
 }
+
 
 public class Anagramy
 {
@@ -45,6 +62,8 @@ public class Anagramy
             {
                 System.out.print(anagramy.get(i).get(j) + " ");
             }
+
+            System.out.println();
         }
     }
 
@@ -275,15 +294,10 @@ public class Anagramy
                     .collect(Collectors.toList());
 
             for (int i = 0; i < words.size(); i++) {
-                slowa3.add(new MyTuple(words.get(i), ""));
-
-                if (i % 2 == 0)
-                {
-                    if (i + 1 < words.size()) {
-                        slowa3.add(new MyTuple(words.get(i), words.get(i + 1)));
-                    } else {
-                        slowa3.add(new MyTuple(words.get(i), ""));
-                    }
+                String second = (i + 1 < words.size()) ? words.get(i + 1) : "";
+                slowa3.add(new MyTuple(words.get(i), second));
+                if (second != "") {
+                    i++; // Increment i if a second word was paired with the first
                 }
             }
         }
